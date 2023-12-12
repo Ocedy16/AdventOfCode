@@ -1,1 +1,35 @@
 #To be done
+f = open('https://raw.githubusercontent.com/Ocedy16/AdventOfCode/main/Data_Day2.txt')
+file = f.read()
+f.close()
+for line in file.readlines() :
+  game_info = line.split(':')[0]
+  line = line.split(':')[1]
+  games = line.split(';')
+
+f = open('Data_Day2.txt', 'r')
+file = f.readlines()
+f.close()
+
+ind = []
+total = 0
+
+for line in file:
+    game_info = line.split(':')[0]
+    line = line.split(':')[1]
+    games = line.split(';')
+
+    if int(game_info.split(" ")[1]) not in ind:  # Check if the game has already been processed
+        ind.append(int(game_info.split(" ")[1]))
+
+        for game in games:
+            tours = game.split(',')
+
+            for tour in tours:
+                number = int(tour.split(" ")[1])
+                color = tour.split(" ")[2][0]
+
+                if (color == "g" and number <= 13) or (color == "b" and number <= 14) or (color == "r" and number <= 12):
+                    total += int(game_info.split(" ")[1])
+
+print(total, ind[:6])
